@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const keys = process.env.keys || require('../config/keys');
+// const keys = process.env.keys || require('../config/keys');
 
 const google = require('googleapis')
 const OAuth2 = google.google.auth.OAuth2
