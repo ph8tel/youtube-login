@@ -47,5 +47,4 @@ app.get('/test', (req, res) => {
     // app.get('/youtube', (req, res) => res.json(req))
 app.listen(PORT, () => {
     console.log('app now listening for requests on port', PORT);
-    console.log('vars are', process.env)
 });
