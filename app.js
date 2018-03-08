@@ -6,7 +6,6 @@ const profileRoutes = require('./routes/profile-routes');
 const apiRoutes = require('./routes/api-routes');
 const passportSetup = require('./passport/passport-setup');
 const mongoose = require('mongoose');
-// const keys = process.env.keys || require('./config/keys');
 const cookie = process.env.CKE || require('./config/keys').session.cookieKey
 const mongo = process.env.MNG || require('./config/keys').mongodb.dbURI
 const PORT = process.env.PORT || 4000;

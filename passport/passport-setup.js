@@ -2,14 +2,13 @@ const passport = require('passport');
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const YoutubeV3Strategy = require('passport-youtube-v3').Strategy
-
-// const keys = process.env.keys || require('../config/keys');
+const keys = require('../config/keys')
 const User = require('../models/user-model');
 const GUser = require('../models/google-model')
-const GID = process.env.GIS || require('../config/keys').google.clientID
-const GSEC = process.env.GSEC || require('../config/keys').google.clientSecret
-const YID = process.env.YED || require('../config/keys').youTube.clientID
-const YSEC = process.env.YSEC || require('../config/keys').youTube.clientSecret
+const GID = process.env.GIS || keys.google.clientID
+const GSEC = process.env.GSEC || keys.google.clientSecret
+const YID = process.env.YED || keys.youTube.clientID
+const YSEC = process.env.YSEC || keys.youTube.clientSecret
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -49,15 +48,13 @@ passport.use(
         });
     })
 );
-var config = {
+
+passport.use(new YoutubeV3Strategy({
+    // options for youtube strategy
     clientID: YID,
     clientSecret: YSEC,
     callbackURL: '/auth/youtube/callback'
-};
-passport.use(new YoutubeV3Strategy({
-    clientID: config.clientID,
-    clientSecret: config.clientSecret,
-    callbackURL: config.callbackURL
+        // use this to clear second confirm screen
         // scope: ['https://www.googleapis.com/auth/youtube.readonly'],
         // authorizationParams: {
         //     access_type: 'offline'
