@@ -22,7 +22,11 @@ router.get('/google', passport.authenticate('google', {
 }));
 // auth with youtube
 router.get('/youtube',
-    passport.authenticate('youtube')
+    passport.authenticate('youtube'),
+    (req, res) => {
+        referer = req.header('Referer')
+        console.log('ref is ', referer)
+    }
 );
 // send back all of the
 router.get('/youtube/callback', passport.authenticate('youtube'), async(req, res) => {
