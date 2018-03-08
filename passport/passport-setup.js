@@ -3,7 +3,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const YoutubeV3Strategy = require('passport-youtube-v3').Strategy
 
-const keys = process.env.keys || require('../config/keys');
+// const keys = process.env.keys || require('../config/keys');
 const User = require('../models/user-model');
 const GUser = require('../models/google-model')
 
@@ -18,10 +18,11 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(
+
     new GoogleStrategy({
         // options for google strategy
-        clientID: keys.google.clientID,
-        clientSecret: keys.google.clientSecret,
+        clientID: process.env.GID,
+        clientSecret: process.env.GSEC,
         callbackURL: '/auth/google/redirect'
     }, (accessToken, refreshToken, profile, done) => {
         // check if user already exists in our own db
@@ -45,8 +46,8 @@ passport.use(
     })
 );
 var config = {
-    clientID: keys.youTube.clientID,
-    clientSecret: keys.youTube.clientSecret,
+    clientID: process.env.YID,
+    clientSecret: process.env.YSEC,
     callbackURL: '/auth/youtube/callback'
 };
 passport.use(new YoutubeV3Strategy({

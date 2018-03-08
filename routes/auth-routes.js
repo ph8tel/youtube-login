@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
-const keys = process.env.keys || require('../config/keys');
+// const keys = process.env.keys || require('../config/keys');
 var axios = require('axios')
 var youtube = require('../youtubeLogic/youtube')
 const User = require('../models/user-model');
@@ -27,7 +27,7 @@ router.get('/youtube',
 // send back all of the
 router.get('/youtube/callback', passport.authenticate('youtube'), async(req, res) => {
     let userComplete = req.user
-    let userData = await youtube.gimmeAll(req.user._id, keys.youTube.API_KEY)
+    let userData = await youtube.gimmeAll(req.user._id, process.env.YAPI)
         // userData.user = req.user
 
     User.findOneAndUpdate({ _id: req.user._id }, { videos: userData.videos, comments: userData.comments }, { fields: 'data' }, function(err) {
