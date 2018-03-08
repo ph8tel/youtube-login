@@ -7,7 +7,7 @@ const apiRoutes = require('./routes/api-routes');
 const passportSetup = require('./passport/passport-setup');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-const PORT = procerss.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 const app = express();
 //set static
 app.use(express.static('static'))
@@ -44,6 +44,6 @@ app.get('/test', (req, res) => {
         res.render('api-test', { user: false })
     })
     // app.get('/youtube', (req, res) => res.json(req))
-app.listen(6000, () => {
-    console.log('app now listening for requests on port 3000');
+app.listen(PORT, () => {
+    console.log('app now listening for requests on port', PORT);
 });

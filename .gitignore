@@ -1,6 +1,10 @@
 config/keys.js
 config/passport-setup.js
+config/*.*
+.DS_Store
+config/*.*
 
+package-lock.json
 # Logs
 logs
 *.log

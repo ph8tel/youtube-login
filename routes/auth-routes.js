@@ -4,8 +4,8 @@ const keys = require('../config/keys');
 var axios = require('axios')
 var youtube = require('../youtubeLogic/youtube')
 const User = require('../models/user-model');
-
-// auth login
+var referer
+    // auth login
 router.get('/login', (req, res) => {
     res.render('login', { user: req.user });
 });
@@ -35,8 +35,13 @@ router.get('/youtube/callback', passport.authenticate('youtube'), async(req, res
             console.log(err, 'err in update db')
         }
     })
+    let responseObject = {
+        data: userData.videos,
+        comments: userData.comments,
+        user: req.user
+    }
 
-    res.render('youtubeVideos', { data: userData.videos, comments: userData.comments, user: req.user} ) 
+    res.render('youtubeVideos', responseObject)
 
 });
 
