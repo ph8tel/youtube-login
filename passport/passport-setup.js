@@ -6,6 +6,10 @@ const YoutubeV3Strategy = require('passport-youtube-v3').Strategy
 // const keys = process.env.keys || require('../config/keys');
 const User = require('../models/user-model');
 const GUser = require('../models/google-model')
+const GID = process.env.GIS || require('../config/keys').google.clientID
+const GSEC = process.env.GSEC || require('../config/keys').google.clientSecret
+const YID = process.env.YED || require('../config/keys').youTube.clientID
+const YSEC = process.env.YSEC || require('../config/keys').youTube.clientSecret
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -21,8 +25,8 @@ passport.use(
 
     new GoogleStrategy({
         // options for google strategy
-        clientID: process.env.GID,
-        clientSecret: process.env.GSEC,
+        clientID: GID,
+        clientSecret: GSEC,
         callbackURL: '/auth/google/redirect'
     }, (accessToken, refreshToken, profile, done) => {
         // check if user already exists in our own db
@@ -46,8 +50,8 @@ passport.use(
     })
 );
 var config = {
-    clientID: process.env.YID,
-    clientSecret: process.env.YSEC,
+    clientID: YID,
+    clientSecret: YSEC,
     callbackURL: '/auth/youtube/callback'
 };
 passport.use(new YoutubeV3Strategy({

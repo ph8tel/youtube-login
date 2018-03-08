@@ -7,7 +7,8 @@ const apiRoutes = require('./routes/api-routes');
 const passportSetup = require('./passport/passport-setup');
 const mongoose = require('mongoose');
 // const keys = process.env.keys || require('./config/keys');
-
+const cookie = process.env.CKE || require('./config/keys').session.cookieKey
+const mongo = process.env.MNG || require('./config/keys').mongodb.dbURI
 const PORT = process.env.PORT || 4000;
 const app = express();
 //set static
@@ -18,7 +19,7 @@ app.set('view engine', 'ejs');
 // set up session cookies
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [process.env.CKE]
+    keys: [cookie]
 }));
 
 // initialize passport
@@ -27,7 +28,7 @@ app.use(passport.session());
 
 
 // connect to mongodb
-mongoose.connect(process.env.MNG, () => {
+mongoose.connect(mongo, () => {
     console.log('connected to mongodb');
 });
 

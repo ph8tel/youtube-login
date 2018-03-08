@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const keys = process.env.keys || require('../config/keys');
 const bodyParser = require('body-parser');
 const User = require('../models/user-model');
 
