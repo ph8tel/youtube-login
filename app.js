@@ -6,7 +6,8 @@ const profileRoutes = require('./routes/profile-routes');
 const apiRoutes = require('./routes/api-routes');
 const passportSetup = require('./passport/passport-setup');
 const mongoose = require('mongoose');
-const keys = require('./config/keys');
+const keys = process.env.keys || require('./config/keys');
+
 const PORT = process.env.PORT || 4000;
 const app = express();
 //set static

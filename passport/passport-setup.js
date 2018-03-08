@@ -3,7 +3,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const YoutubeV3Strategy = require('passport-youtube-v3').Strategy
 
-const keys = require('../config/keys');
+const keys = process.env.keys || require('../config/keys');
 const User = require('../models/user-model');
 const GUser = require('../models/google-model')
 

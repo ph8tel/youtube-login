@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
-const keys = require('../config/keys');
+const keys = process.env.keys || require('../config/keys');
 var axios = require('axios')
 var youtube = require('../youtubeLogic/youtube')
 const User = require('../models/user-model');
