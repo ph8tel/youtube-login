@@ -44,7 +44,7 @@ router.get('/youtube/callback', passport.authenticate('youtube'), async(req, res
         comments: userData.comments,
         user: req.user
     }
-    if (referer !== 'http://getmyyoutubedata.herokuapp.com/') {
+    if (referer === 'http://getmyyoutubedata.herokuapp.com/') {
         res.render('youtubeVideos', responseObject)
     } else {
         res.redirect(`http://localhost:5000/${req.user.name}/${req.user._id}`)
